@@ -1,0 +1,18 @@
+-------------------------------------
+| Kao Console Python Package |
+-------------------------------------
+
+Python package to handle receiving command line character input, specifically in a getch() fashion.
+getch() will return the ASCII code for a traditional character.
+getch() will return a number 260 or higher for command line meta characters.
+
+Meta Characters currently processed:
+- Left Arrow
+- Right Arrow
+- Up Arrow
+- Down Arrow
+- Delete
+- Home
+- End
+
+Constants for non-print characters are available from the kao_console.ascii module
