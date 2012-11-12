@@ -4,13 +4,16 @@ import curses
 
 from ascii import *
 
-def getch():
+def getch(blocking=True):
     """ Retrieves a single character from the command line """
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
         tty.setraw(sys.stdin.fileno())
-        char = ord(sys.stdin.read(1))
+        if blocking:
+            char = _getCharacterAndBlock()
+        else:
+            char = _getCharacterWithoutBlocking()
         metaChars = _getMetaCharacters()
     finally:
         termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old_settings)
@@ -19,6 +22,19 @@ def getch():
 def cls():
     """ Clears the console """
     sys.stdout.write("\033c")
+    
+def _getCharacterAndBlock():
+    """ """
+    return ord(sys.stdin.read(1))
+    
+def _getCharacterWithoutBlocking():
+    """ """
+    char = None
+    i,o,e = select.select([sys.stdin],[],[],0.0001)
+    for s in i:
+        if s == sys.stdin:
+            char = _getCharacterAndBlock()
+    return char
     
 def _getMetaCharacters():    
         """ """
@@ -33,12 +49,7 @@ def _getMetaCharacters():
 
 def _getMetaCharacter():  
     """ Gets a Metadata Character """
-    metaByte = None
-    i,o,e = select.select([sys.stdin],[],[],0.0001)
-    for s in i:
-        if s == sys.stdin:
-            metaByte = ord(sys.stdin.read(1))
-    return metaByte
+    return _getCharacterWithoutBlocking()
     
 def _processMetaCharacter(char, metaChars):
     """ Processes an escaped meta-data character """
