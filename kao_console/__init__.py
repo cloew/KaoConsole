@@ -30,7 +30,7 @@ def _getCharacterAndBlock():
 def _getCharacterWithoutBlocking():
     """ """
     char = None
-    i,o,e = select.select([sys.stdin],[],[],0.0001)
+    i,o,e = select.select([sys.stdin],[],[],.0001)
     for s in i:
         if s == sys.stdin:
             char = _getCharacterAndBlock()
