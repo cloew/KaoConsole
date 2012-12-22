@@ -6,6 +6,9 @@ Python package to handle receiving command line character input, specifically in
 getch() will return the ASCII code for a traditional character.
 getch() will return a number 260 or higher for command line meta characters.
 
+Currently, works in Cygwin with standard python.
+For Linux operation, Python programs must be run in unbuffered mode (-u option)
+
 Meta Characters currently processed:
 - Left Arrow
 - Right Arrow
@@ -14,5 +17,7 @@ Meta Characters currently processed:
 - Delete
 - Home
 - End
+- Page Up
+- Page Down
 
 Constants for non-print characters are available from the kao_console.ascii module

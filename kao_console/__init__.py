@@ -63,4 +63,3 @@ def _processMetaCharacter(char, metaChars):
             else:
                 return ord(" ")
     return char
-        
