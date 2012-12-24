@@ -1,5 +1,6 @@
 ESCAPE = 27
 ARROW_ESCAPE = 91
+LINUX_HOME_END_ESCAPE = 79
 ENDL = 13
 TAB = 9
 
@@ -45,6 +46,10 @@ ArrowEscapeToKAO = {UP_ARROW:KAO_UP,
                     PAGE_DOWN:PageDownEscapeToKAO
                     }
 
+LinuxEscapeToKAO = {HOME:KAO_HOME,
+                    END:KAO_END,
+                    }
 
-MetaCharToKAO = {ARROW_ESCAPE:ArrowEscapeToKAO
+MetaCharToKAO = {ARROW_ESCAPE:ArrowEscapeToKAO,
+                 LINUX_HOME_END_ESCAPE:LinuxEscapeToKAO
                 }
