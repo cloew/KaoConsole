@@ -16,6 +16,11 @@ DOWN_ARROW = 66
 RIGHT_ARROW = 67
 LEFT_ARROW = 68
 
+SEQUENCE_ESCAPE_1 = 49
+SEQUENCE_ESCAPE_2 = 59
+
+CTRL_ESCAPE = 53
+
 PAGE_UP = 53
 PAGE_DOWN = 54
 
@@ -30,10 +35,22 @@ KAO_HOME = 265
 KAO_END = 266
 KAO_PAGE_UP = 267
 KAO_PAGE_DOWN = 268
+KAO_CTRL_UP = 269
+KAO_CTRL_DOWN = 270
+KAO_CTRL_LEFT = 271
+KAO_CTRL_RIGHT = 272
+
+CtrlEscapeToKAO = {UP_ARROW:KAO_CTRL_UP,
+                   DOWN_ARROW:KAO_CTRL_DOWN,
+                   LEFT_ARROW:KAO_CTRL_LEFT,
+                   RIGHT_ARROW:KAO_CTRL_RIGHT,}
 
 
 PageUpEscapeToKAO = {PAGE_KEY_FINAL:KAO_PAGE_UP}
 PageDownEscapeToKAO = {PAGE_KEY_FINAL:KAO_PAGE_DOWN}
+
+Sequence2EscapeToKAO = {CTRL_ESCAPE:CtrlEscapeToKAO}
+Sequence1EscapeToKAO = {SEQUENCE_ESCAPE_2:Sequence2EscapeToKAO}
 
 ArrowEscapeToKAO = {UP_ARROW:KAO_UP,
                     DOWN_ARROW:KAO_DOWN,
@@ -43,7 +60,8 @@ ArrowEscapeToKAO = {UP_ARROW:KAO_UP,
                     HOME:KAO_HOME,
                     END:KAO_END,
                     PAGE_UP:PageUpEscapeToKAO,
-                    PAGE_DOWN:PageDownEscapeToKAO
+                    PAGE_DOWN:PageDownEscapeToKAO,
+                    SEQUENCE_ESCAPE_1:Sequence1EscapeToKAO
                     }
 
 LinuxEscapeToKAO = {HOME:KAO_HOME,
