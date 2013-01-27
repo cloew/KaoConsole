@@ -1,3 +1,5 @@
+import sys
+
 ESCAPE = 27
 ARROW_ESCAPE = 91
 LINUX_HOME_END_ESCAPE = 79
@@ -26,19 +28,29 @@ PAGE_DOWN = 54
 
 PAGE_KEY_FINAL = 126
 
-KAO_UP = 260
-KAO_DOWN = 261
-KAO_LEFT = 262
-KAO_RIGHT = 263
-KAO_DELETE = 264
-KAO_HOME = 265
-KAO_END = 266
-KAO_PAGE_UP = 267
-KAO_PAGE_DOWN = 268
-KAO_CTRL_UP = 269
-KAO_CTRL_DOWN = 270
-KAO_CTRL_LEFT = 271
-KAO_CTRL_RIGHT = 272
+escapeKeys = ["",
+           "CTRL"]
+
+keys = ["UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT",
+        "DELETE",
+        "HOME",
+        "END",
+        "PAGE_UP",
+        "PAGE_DOWN"]
+
+__kao_index = 260
+for escapeKey in escapeKeys:
+    for key in keys:
+        prefix = "KAO"
+        if not escapeKey == "":
+            prefix += "_"
+            prefix += escapeKey
+        name = prefix + "_" + key
+        setattr(sys.modules[__name__], name, __kao_index)
+        __kao_index += 1
 
 CtrlEscapeToKAO = {UP_ARROW:KAO_CTRL_UP,
                    DOWN_ARROW:KAO_CTRL_DOWN,
