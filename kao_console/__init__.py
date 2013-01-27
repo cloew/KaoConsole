@@ -15,7 +15,7 @@ def getch(blocking=True):
         else:
             char = _getCharacterWithoutBlocking()
         metaChars = _getMetaCharacters()
-        print char, metaChars
+        #print char, metaChars
     finally:
         termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old_settings)
     return _processMetaCharacter(char, metaChars)
