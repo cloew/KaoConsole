@@ -29,7 +29,7 @@ PAGE_DOWN = 54
 PAGE_KEY_FINAL = 126
 
 escapeKeys = ["",
-           "CTRL"]
+              "CTRL"]
 
 keys = ["UP",
         "DOWN",
