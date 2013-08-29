@@ -1,11 +1,29 @@
-import sys, tty, termios
+import sys
 import select
 import curses
+
+__on_windows__ = False
+try:
+    import tty, termios
+except ImportError:
+    __on_windows__ = True
+    import msvcrt    
 
 from ascii import *
 
 def getch(blocking=True):
     """ Retrieves a single character from the command line """
+    if __on_windows__:
+        return __getch_WINDOWS(blocking)
+    else:
+        return __getch_UNIX_CYGWIN(blocking)
+
+def __getch_WINDOWS(blocking=True):
+    """ Retrieves a single character from the command line for Windows """
+    return msvcrt.getch()
+    
+def __getch_UNIX_CYGWIN(blocking=True):
+    """ Retrieves a single character from the command line for UNIX or cygwin """
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
