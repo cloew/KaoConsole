@@ -1,3 +1,4 @@
+import string
 import sys
 
 ESCAPE = 27
@@ -12,7 +13,14 @@ DELETE = 51
 HOME = 72
 END = 70
 
-CTRL_S = 19
+# Add CTRL Letters
+asciiValue = 1
+for letter in string.uppercase:
+    name = "CTRL_{0}".format(letter) 
+    setattr(sys.modules[__name__], name, asciiValue)
+    asciiValue += 1
+
+# Add meta characters
 UP_ARROW = 65
 DOWN_ARROW = 66
 RIGHT_ARROW = 67
