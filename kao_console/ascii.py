@@ -36,19 +36,24 @@ PAGE_DOWN = 54
 
 PAGE_KEY_FINAL = 126
 
-escapeKeys = ["",
-              "CTRL"]
 
-keys = ["UP",
-        "DOWN",
-        "LEFT",
-        "RIGHT",
-        "DELETE",
-        "HOME",
-        "END",
-        "PAGE_UP",
-        "PAGE_DOWN"]
+ArrowEscapeToKAO = {}
+CtrlEscapeToKAO = {}
 
+escapeKeys = {"":ArrowEscapeToKAO,
+              "CTRL":CtrlEscapeToKAO}
+
+keys = {"UP":UP_ARROW,
+        "DOWN":DOWN_ARROW,
+        "LEFT":LEFT_ARROW,
+        "RIGHT":RIGHT_ARROW,
+        "DELETE":DELETE,
+        "HOME":HOME,
+        "END":END,
+        "PAGE_UP":PAGE_UP,
+        "PAGE_DOWN":PAGE_DOWN}
+
+        
 __kao_index = 260
 for escapeKey in escapeKeys:
     for key in keys:
@@ -58,31 +63,18 @@ for escapeKey in escapeKeys:
             prefix += escapeKey
         name = prefix + "_" + key
         setattr(sys.modules[__name__], name, __kao_index)
+        escapeKeys[escapeKey][keys[key]] = __kao_index
         __kao_index += 1
-
-CtrlEscapeToKAO = {UP_ARROW:KAO_CTRL_UP,
-                   DOWN_ARROW:KAO_CTRL_DOWN,
-                   LEFT_ARROW:KAO_CTRL_LEFT,
-                   RIGHT_ARROW:KAO_CTRL_RIGHT,}
-
-
+                   
 PageUpEscapeToKAO = {PAGE_KEY_FINAL:KAO_PAGE_UP}
 PageDownEscapeToKAO = {PAGE_KEY_FINAL:KAO_PAGE_DOWN}
 
 Sequence2EscapeToKAO = {CTRL_ESCAPE:CtrlEscapeToKAO}
 Sequence1EscapeToKAO = {SEQUENCE_ESCAPE_2:Sequence2EscapeToKAO}
 
-ArrowEscapeToKAO = {UP_ARROW:KAO_UP,
-                    DOWN_ARROW:KAO_DOWN,
-                    LEFT_ARROW:KAO_LEFT,
-                    RIGHT_ARROW:KAO_RIGHT,
-                    DELETE:KAO_DELETE,
-                    HOME:KAO_HOME,
-                    END:KAO_END,
-                    PAGE_UP:PageUpEscapeToKAO,
-                    PAGE_DOWN:PageDownEscapeToKAO,
-                    SEQUENCE_ESCAPE_1:Sequence1EscapeToKAO
-                    }
+ArrowEscapeToKAO[SEQUENCE_ESCAPE_1]  = Sequence1EscapeToKAO 
+ArrowEscapeToKAO[PAGE_UP]  = PageUpEscapeToKAO 
+ArrowEscapeToKAO[PAGE_DOWN]  = PageDownEscapeToKAO
 
 LinuxEscapeToKAO = {HOME:KAO_HOME,
                     END:KAO_END,
