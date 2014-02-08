@@ -6,6 +6,7 @@ ARROW_ESCAPE = 91
 LINUX_HOME_END_ESCAPE = 79
 ENDL = 13
 TAB = 9
+TAB_FINAL = 90
 
 BACKSPACE = 127
 DELETE = 51
@@ -65,6 +66,9 @@ for escapeKey in escapeKeys:
         setattr(sys.modules[__name__], name, __kao_index)
         escapeKeys[escapeKey][keys[key]] = __kao_index
         __kao_index += 1
+        
+KAO_SHIFT_TAB = __kao_index
+__kao_index += 1
                    
 PageUpEscapeToKAO = {PAGE_KEY_FINAL:KAO_PAGE_UP}
 PageDownEscapeToKAO = {PAGE_KEY_FINAL:KAO_PAGE_DOWN}
@@ -75,6 +79,7 @@ Sequence1EscapeToKAO = {SEQUENCE_ESCAPE_2:Sequence2EscapeToKAO}
 ArrowEscapeToKAO[SEQUENCE_ESCAPE_1]  = Sequence1EscapeToKAO 
 ArrowEscapeToKAO[PAGE_UP]  = PageUpEscapeToKAO 
 ArrowEscapeToKAO[PAGE_DOWN]  = PageDownEscapeToKAO
+ArrowEscapeToKAO[TAB_FINAL]  = KAO_SHIFT_TAB
 
 LinuxEscapeToKAO = {HOME:KAO_HOME,
                     END:KAO_END,
