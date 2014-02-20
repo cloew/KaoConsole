@@ -1,6 +1,5 @@
 import sys
 import select
-import curses
 
 __on_windows__ = False
 try:
